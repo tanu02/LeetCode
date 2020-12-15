@@ -7,8 +7,7 @@ class Solution {
 
 	public Solution(int[] w) {
 		this.coordinates = new int[w.length];
-		coordinates[0] = w[0];
-		
+
 		for (int i = 0; i < w.length; i++) {
 			totalsum += w[i];
 			coordinates[i] = totalsum;

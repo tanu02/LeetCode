@@ -11,14 +11,14 @@ class Solution {
 		
 		int peak = findPeak(0, mountainArr.length() - 1);
 		int res = -1;
-		res = search(0, peak);
+		res = searchFirstHalf(0, peak);
 		if (res != -1)
 			return res;
 
-		return search1(peak + 1, mountainArr.length() - 1);
+		return searchSecondHalf(peak + 1, mountainArr.length() - 1);
 
 	}
-	private int search1(int st, int end) {
+	private int searchSecondHalf(int st, int end) {
 		if (st == end) {
 			if (target == arr.get(st))
 				return st;
@@ -26,14 +26,14 @@ class Solution {
 			return -1;
 		}
 		int mid = st + (end - st) / 2;
-		
-		if(target < arr.get(mid)) return search1(mid + 1, end);
-		return search1(st, mid);
-		
+
+		if(target < arr.get(mid)) return searchSecondHalf(mid + 1, end);
+		return searchSecondHalf(st, mid);
+
 		
 	}
 
-	private int search(int st, int end) {
+	private int searchFirstHalf(int st, int end) {
 		if (st == end) {
 			if (target == arr.get(st))
 				return st;
@@ -42,8 +42,8 @@ class Solution {
 		}
 		int mid = st + (end - st) / 2;
 		if (target > arr.get(mid))
-			return search(mid + 1, end);
-		return search(st, mid);
+			return searchFirstHalf(mid + 1, end);
+		return searchFirstHalf(st, mid);
 
 	}
 

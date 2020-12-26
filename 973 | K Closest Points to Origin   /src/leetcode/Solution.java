@@ -58,6 +58,7 @@ class Solution {
 	}
 
 	private int dist(int[] coordinates) {
+
 		return coordinates[0] * coordinates[0] + coordinates[1] * coordinates[1];
 	}
 

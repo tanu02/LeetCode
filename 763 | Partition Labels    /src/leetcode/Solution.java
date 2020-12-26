@@ -7,7 +7,9 @@ class Solution {
 	public List<Integer> partitionLabels(String S) {
 		List<Integer> outputList = new ArrayList<>();
 		if(S == null) return outputList; 
-		int st = 0; int end = 0; int len = S.length();
+		int st = 0;
+		int end = 0;
+		int len = S.length();
 		int[] index = new int[26];
 		
 		for (int i = 0; i < S.length(); i++) {

@@ -3,19 +3,19 @@ package leetcode;
 class Solution {
 
 	int[] coordinates;
-	int totalsum;
+	int totalSum;
 
 	public Solution(int[] w) {
 		this.coordinates = new int[w.length];
 
 		for (int i = 0; i < w.length; i++) {
-			totalsum += w[i];
-			coordinates[i] = totalsum;
+			totalSum += w[i];
+			coordinates[i] = totalSum;
 		}
 	}
 
 	public int pickIndex() {
-		double target = Math.random() * totalsum;
+		double target = Math.random() * totalSum;
 		return findRandom(0, coordinates.length, target);
 
 	}

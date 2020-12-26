@@ -8,7 +8,8 @@ import java.util.Set;
 
 class Solution {
 	int row, col;
-	int[][] visited;
+	boolean[][] visited;
+
 	List<int[]> directions = Arrays.asList(new int[] { 0, 1 }, new int[] { 1, 0 }, new int[] { 0, -1 },
 			new int[] { -1, 0 });
 	int[][] grid;
@@ -20,7 +21,7 @@ class Solution {
 		this.row = grid.length;
 		this.col = grid[0].length;
 		this.grid = grid;
-		visited = new int[row][col];
+		visited = new boolean[row][col];
 		Set<List<Integer>> islandsSet = new HashSet<>();
 		List<Integer> island;
 		for (int i = 0; i < row; i++) {
@@ -37,10 +38,10 @@ class Solution {
 	}
 
 	private void dfs(List<Integer> island, int i, int j, int dis) {
-		if (i < 0 || i == row || j < 0 || j == col || grid[i][j] == 0 || visited[i][j] == 2)
+		if (i < 0 || i == row || j < 0 || j == col || grid[i][j] == 0 || visited[i][j])
 			return;
 
-		visited[i][j] = 2;
+		visited[i][j] = true;
 		island.add(dis);
 
 		for (int[] dir : directions) {

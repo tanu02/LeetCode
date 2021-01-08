@@ -26,7 +26,7 @@ class Solution {
     private int findInflect(int[] nums, int st, int end) {
         if (st == end) return st;
         int mid = st + (end - st) / 2;
-        if (nums[mid] > nums[end]) return findInflect(nums, mid + 1, end);
+        if (nums[end] < nums[mid] ) return findInflect(nums, mid + 1, end);
         return findInflect(nums, st, mid);
     }
 }

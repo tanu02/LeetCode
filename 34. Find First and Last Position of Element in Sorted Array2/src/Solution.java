@@ -2,8 +2,8 @@ class Solution {
     public int[] searchRange(int[] nums, int target) {
 
         if(nums == null || nums.length == 0 ) return new int[]{-1, -1};
-        int left = -1, right = -1;
-        left = binaryLeft(0, nums.length - 1, nums, target);
+        int right = -1;
+        int left = binaryLeft(0, nums.length - 1, nums, target);
         if (left != -1) {
             right = binaryRight(0, nums.length - 1, nums, target);
         }
@@ -21,11 +21,11 @@ class Solution {
     }
 
     private int binaryRight(int st, int end, int[] nums, int target) {
-        if (st == end) {
+        if (st == end) { //if input array is of size 1 or  case 8 9 9 9 single occurence of target
             if (target == nums[st]) return st;
             return -1;
         }
-        if (st + 1 == end) {
+        if (st + 1 == end) {  //7 7 8 8 OR 7 8 8 8
                     if(nums[end] == target) return end;
                     return st;
         }

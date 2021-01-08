@@ -11,7 +11,7 @@ class Solution {
             if (target >= (long) end * end) return end;
             return st;
         }
-        ;
+
         int mid = st + (end - st) / 2;
         if (target > (long) mid * mid) return binarySearch(mid, end, target);
         return binarySearch(st, mid, target);

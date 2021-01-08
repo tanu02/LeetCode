@@ -11,9 +11,9 @@ class Solution {
 
         int mid = st + (end - st) / 2;
 
-        if (nums[mid] == nums[end]) return binarySearch(st, end - 1, nums);
+        if (nums[end] == nums[mid]) return binarySearch(st, end - 1, nums);
 
-        if (nums[mid] > nums[end]) return binarySearch(mid + 1, end, nums);
+        if (nums[end] < nums[mid]) return binarySearch(mid + 1, end, nums);
 
         return binarySearch(st, mid, nums);
     }

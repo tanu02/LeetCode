@@ -13,6 +13,7 @@ public class Main {
 				{0, -1, INF, INF}
 				};
 		int[][] arr1 = {};
+		sol.wallsAndGates(arr);
 		sol.wallsAndGates(arr1);
 		printArray(arr);
 

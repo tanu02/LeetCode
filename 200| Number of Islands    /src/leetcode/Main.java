@@ -39,11 +39,11 @@ public class Main {
 				 {'1','1','1','0','1'}
 	};
 		System.out.println(sol.numIslands(arr));
-		System.out.println(sol.numIslands(arr1));
-		System.out.println(sol.numIslands(arr2));
-		System.out.println(sol.numIslands(arr3));
-		System.out.println(sol.numIslands(arr4));
-		System.out.println(sol.numIslands(arr5));
+//		System.out.println(sol.numIslands(arr1));
+//		System.out.println(sol.numIslands(arr2));
+//		System.out.println(sol.numIslands(arr3));
+//		System.out.println(sol.numIslands(arr4));
+//		System.out.println(sol.numIslands(arr5));
 
 	}
 }

@@ -18,7 +18,7 @@ class MergeTwoSortedLists {
 			ListNode head = current; 
 			
 			while(l1 != null && l2 != null){  // if both are null mean no elements in any list : return null as answer 
-					if (l1.val <= l2.val){  // 
+					if (l1.val <= l2.val){
 								current.next = l1; 
 								l1 = l1.next; 
 						} else{

@@ -15,7 +15,8 @@ class SearchA2DMatrixII {
 			else if (target < matrix[i][j])
 				i--;
 			else if (target == matrix[i][j])
-				return true;
+				return true; 				 //1 out of 10 positions will be k rest 9 will be either < or >
+											//why check equal in 90% of cases
 		}
 		return false;
 

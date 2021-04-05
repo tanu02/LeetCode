@@ -71,7 +71,7 @@ class DesignDoublyLinkedList {
     public void deleteAtIndex(int index) { //here we have to delete ith node which has to be within 0 and size -1 
         if (index < 0 || index >= size) return;
         Node current = head;
-        for (int i = 0; i < index + 1; i++) current = current.next;
+        for (int i = 0; i < index + 1; i++) current = current.next; //again doubly ll reach till that index
 
         Node nextNode = current.next;
         Node prevNode = current.prev;

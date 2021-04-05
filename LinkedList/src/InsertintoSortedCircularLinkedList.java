@@ -1,6 +1,4 @@
 
-
-
 class InsertintoSortedCircularLinkedList {
     public Node insert(Node head, int insertVal) {
         if (head == null) {
@@ -9,18 +7,17 @@ class InsertintoSortedCircularLinkedList {
             return node;
         }
 
-        Node current = head;
+        Node current = head; // use case : 3 3, 3 5 or 5 1
 
-        while (current.next != head) {
+        while (current.next != head) { //singly ll we insert after a given node so reach till the last node
 
             Node nextNode = current.next;
 
-            if (current.val <= nextNode.val
-                    && current.val <= insertVal && insertVal <= nextNode.val) { //upward ladder
-                addAfter(current, insertVal);
+            if (current.val <= nextNode.val && current.val <= insertVal && insertVal <= nextNode.val) { //upward ladder
+                addAfter(current, insertVal); // 3 5 or 3 3
                 return head;
-            } else if (current.val > nextNode.val) {
-                if (insertVal >= current.val || insertVal <= nextNode.val) {
+            } else if (current.val > nextNode.val) { // 5 1 rotated point
+                if (insertVal >= current.val || insertVal <= nextNode.val) { //either 5>= or 1<= can be inserted
                     addAfter(current, insertVal);
                     return head;
                 }
@@ -28,7 +25,7 @@ class InsertintoSortedCircularLinkedList {
             current = current.next;
         }
 
-        addAfter(current, insertVal);
+        addAfter(current, insertVal); //reached the last node, insert after it
         return head;
     }
 

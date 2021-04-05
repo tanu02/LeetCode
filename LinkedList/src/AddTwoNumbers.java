@@ -1,5 +1,34 @@
 
 
+public class AddTwoNumbers {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+
+        int carry = 0;
+        ListNode head = new ListNode();
+        ListNode l3 = head;
+
+        while (l1 != null || l2 != null || carry != 0) {
+            //any of these exist keep summing
+
+            int a = l1 != null ? l1.val : 0;
+            int b = l2 != null ? l2.val : 0;
+            int sum = a + b + carry;
+
+            l3.next = new ListNode(sum % 10);
+            l3 = l3.next;
+
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+
+            if (sum >= 10) carry = 1;
+            else carry = 0;
+        }
+        return head.next;
+    }
+}
+
+
 
 class Solution4 {
     public static void main(String args[]) {
@@ -35,31 +64,3 @@ class Solution4 {
         }
     }
 }
-class AddTwoNumbers {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
-
-        int carry = 0;
-        ListNode head = new ListNode();
-        ListNode l3 = head;
-
-        while (l1 != null || l2 != null || carry != 0) {
-            //any of these exist keep summing
-
-            int a = l1 != null ? l1.val : 0;
-            int b = l2 != null ? l2.val : 0;
-            int sum = a + b + carry;
-
-            l3.next = new ListNode(sum % 10);
-            l3 = l3.next;
-
-            if(l1 != null) l1 = l1.next;
-            if(l2 != null) l2 = l2.next;
-
-            if (sum >= 10) carry = 1;
-            else carry = 0;
-        }
-        return head.next;
-    }
-}
-

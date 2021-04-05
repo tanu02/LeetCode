@@ -22,7 +22,7 @@ class Permutations46 {
 
     }
 
-    private void backTrack(int index, List<Integer> currList) {
+    private void backTrack(int index, List<Integer> currList) { //index wise state - as many elements after that index that many swaps in that state
 
         if (index == currList.size()) outputList.add(new ArrayList<>(currList));
 
@@ -33,3 +33,12 @@ class Permutations46 {
         }
     }
 }
+//permutation is just swapping existing elements(use arraylist) - input is list of elements unlike combination where input was an empty list
+
+//1, 2, 3
+
+//        1 2 3               2 1 3              3 2 1
+//    1 2 3    1 3 2      2 1 3   2 3 1      3 2 1    3 1 2
+//    1 2 3    1 3 2      2 1 3   2 3 1      3 2 1    3 1 2
+//      x        x          x       x          x        x         [index == size]
+

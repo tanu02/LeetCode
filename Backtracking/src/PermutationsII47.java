@@ -29,7 +29,7 @@ class PermutationsII47 {
                             //as length is same after swap eventually same permutation will be generated
             uniqueEntries.add(currList.get(i));
             Collections.swap(currList, index, i);
-            backTrack(index + 1, currList);
+            backTrack(index + 1, currList); //every state has a index which will be swapped with remaining elements
             Collections.swap(currList, index, i);
         }
     }

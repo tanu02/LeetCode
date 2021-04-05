@@ -32,5 +32,15 @@ class CombinationSum39 {
         }
     }
 }
-// [2,3,6,7], target = 7
+//combination gets an empty list as input and we are removing elements so use Linkedlist
 
+// [1, 2, 3], target = 5
+//  1                   / 50% is not calculated unlike permutation where every state had equal mumber of items in the list
+//  1, 2              /
+//  1, 2, 3         /
+//  1, 3          /
+//              /
+//  2         /
+//  2,3     /
+//        /
+//  3   /

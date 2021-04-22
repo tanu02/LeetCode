@@ -17,8 +17,8 @@ public class NearestLeftSmall {
             if (stack.isEmpty()) ans = -1;
             else ans = stack.peek(); //nearest smallest element, popped all the > elements
 
-            output[i] = ans;
             stack.push(i);
+            output[i] = ans;
         }
         return output;
 

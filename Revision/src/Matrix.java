@@ -6,7 +6,7 @@ class SearchA2DMatrixII {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
             return false;
 
-        int i = matrix.length - 1;
+        int i = matrix.length - 1; //left bottom corner
         int j = 0;
         int col = matrix[0].length;
 

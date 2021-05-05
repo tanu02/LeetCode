@@ -4,12 +4,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Java8 {
-    public void primitiveArrayToNonPrimitiveArray(int[] arr) {
-        List<Integer> list = Arrays.stream(arr)
-                .boxed()
-                .collect(Collectors.toList());
-    }
-
     public void primitiveArrayToNonPrimitiveList(int[][] arr) { //2d array to list
         Integer[][] output = Stream.of(arr).
                 map(interval -> Arrays.stream(interval).boxed().toArray(Integer[]::new))
@@ -35,7 +29,7 @@ public class Java8 {
 
         List<int[]> list2 = new ArrayList<>(); //{{}}
         int size1 = list2.size();
-        int[][] output = list2.toArray(new int[size1][]);
+        int[][] output = list2.toArray(new int[size1][]);//output is  array - have to provide size
     }
 
     public void arrayToList() { //create array or have an array
@@ -52,12 +46,27 @@ public class Java8 {
         //else use stream and box the array
     }
 
+    public void primitiveArrayToNonPrimitiveArray(int[] arr) {
+        List<Integer> list = Arrays.stream(arr)
+                            .boxed()
+                            .collect(Collectors.toList());
+    }
+
     public void mapSyntax() {
         Map<Integer, Integer> map = new HashMap<>();
 
         if (map.containsKey(123)) {
         }
 
+    }
+
+    public void copyPieceOfList(int k) { //top k
+        int[] arr = new int[0];
+        int[] output = Arrays.copyOfRange(arr, 0, k); //1 d array copy a range [   )
+
+        int[][] arr1 = new int[0][0];
+        int[][] output1 = Arrays.copyOfRange(arr1, 0, k); // 2 d array copy a range
+//                                                      [   )
     }
 }
 

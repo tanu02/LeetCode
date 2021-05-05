@@ -13,7 +13,7 @@ class StockSpanner {
         int index = 0;
         int ans;
 
-        if (!stack.isEmpty()) index = stack.peek()[1] + 1;
+        if (!stack.isEmpty()) index = stack.peek()[1] + 1; //1st is index 0 is the price
 
         while (!stack.isEmpty() && stack.peek()[0] <= price) {
             stack.pop();

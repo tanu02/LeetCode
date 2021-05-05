@@ -134,7 +134,7 @@ class KClosestPointstoOrigin {
         int j = st;
 
         for (int i = st; i < end; i++) {
-            if (dist(arr[i]) <= dist(pivVal)) swap(i, j++, arr);
+            if (dist(arr[i]) < dist(pivVal)) swap(i, j++, arr);
         }
         swap(j, end, arr);
         return j;

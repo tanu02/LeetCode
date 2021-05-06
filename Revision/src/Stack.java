@@ -1,6 +1,46 @@
 public class Stack {
 }
 
+class NearestLeftSmall {
+
+    public int[] getSmallest(int[] arr) {
+
+        if (arr == null || arr.length == 0) return new int[0];
+
+        java.util.Stack<Integer> stack = new java.util.Stack<>();
+        int ans;
+        int[] output = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {
+                stack.pop();
+            }
+            if (stack.isEmpty()) ans = -1;
+            else ans = stack.peek(); //nearest smallest element, popped all the > elements
+
+            stack.push(i);
+            output[i] = ans;
+        }
+        return output;
+
+    }
+
+}
+
+//                 |
+//                 |
+//          |      |
+//          |   |  |
+//       |  | _ |  |
+
+//      [1, 3, 0, 2, 5]
+//       0  1  2  3  4
+
+//   compare with i  and pop every > element creating a choking point of current element
+
+//smallest in left so loop starts from left
+
+
 class StockSpanner {
 
     java.util.Stack<Integer[]> stack;
@@ -26,48 +66,7 @@ class StockSpanner {
         return ans;
 
     }
-
-
-    public class NearestLeftSmall {
-
-        public int[] getSmallest(int[] arr) {
-
-            if (arr == null || arr.length == 0) return new int[0];
-
-            java.util.Stack<Integer> stack = new java.util.Stack<>();
-            int ans;
-            int[] output = new int[arr.length];
-
-            for (int i = 0; i < arr.length; i++) {
-                while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
-                    stack.pop();
-                }
-                if (stack.isEmpty()) ans = -1;
-                else ans = stack.peek(); //nearest smallest element, popped all the > elements
-
-                stack.push(i);
-                output[i] = ans;
-            }
-            return output;
-
-        }
-
-    }
 }
-
-
-//                 |
-//                 |
-//          |      |
-//          |   |  |
-//       |  | _ |  |
-
-//      [1, 3, 0, 2, 5]
-//       0  1  2  3  4
-
-//   compare with i  and pop every > element creating a choking point of current element
-
-//smallest in left so loop starts from left
 
 class LargestRectangleInHistogram {
 
@@ -108,7 +107,7 @@ class LargestRectangleInHistogram {
                 stack.pop();
             }
 
-            if (stack.isEmpty()) ans = arr.length;
+            if (stack.isEmpty()) ans = arr.length; //catch
             else ans = stack.peek();
 
             stack.push(i);
@@ -121,8 +120,8 @@ class LargestRectangleInHistogram {
         int[] width = new int[leftSmallest.length];
 
         for (int i = 0; i < leftSmallest.length; i++) {
-            width[i] = rightSmallest[i] - leftSmallest[i] - 1;
-        }
+            width[i] = rightSmallest[i] - leftSmallest[i] - 1; //for arr.length - (-1) -1
+        }                                                      // right most -1 is actually for first -1
 
         return width;
     }

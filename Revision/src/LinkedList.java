@@ -44,6 +44,24 @@ public class LinkedList {
         return p1;
 
     }
+ //1)
+     //p1        3 4 5     intersection is 4
+    // p2    1 2 6 4 5          p1   3 4 5 1 2 6 4
+//                              p2   1 2 6 4 5 3 4
+//note how p1 and p2 traverse same distance until they reach 4
+// 2)
+    //had there been no intersection
+      //p1         3 7 4
+      // p2    1 2 6 8 5
+//still p1 and p2 traverse same distance
+// p1           3 7 4 1 2 6 8 5 null
+//pw            1 2 6 8 5 3 7 4 null
+
+//3)
+       // 1 2 3 null
+      //  4 5 6 null
+    //intersection is null p1 1 2 3 null
+    //                     p2 4 5 6 null
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 

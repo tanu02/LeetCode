@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+//317. Shortest Distance from All Buildings
+//https://leetcode.com/problems/shortest-distance-from-all-buildings/
 
-class Solution {
+class ShortestDistancefromAllBuildings317 {
 	int[][] reach;
 	int[][] dist;
 	int[][] grid;
@@ -39,9 +41,9 @@ class Solution {
 		}
 
 		int minDis = Integer.MAX_VALUE;
-		for (int i = 0; i < row; i++) {
+		for (int i = 0; i < row; i++) { //building which can be reached from all the buildings
 			for (int j = 0; j < col; j++) {
-				if (reach[i][j] == totalBuildings && dist[i][j] < minDis) {
+				if (reach[i][j] == totalBuildings && dist[i][j] < minDis) { //reachable from all the buildings then check whose has min distance
 					minDis = dist[i][j];
 				}
 
@@ -56,6 +58,7 @@ class Solution {
 		int[][] visited = new int[row][col];
 		queue.add(new int[] { i, j });
 		int dis = 0;
+
 		while (!queue.isEmpty()) {
 
 			int size = queue.size();
@@ -67,7 +70,7 @@ class Solution {
 					int y = build[0] + dir[0];
 					int x = build[1] + dir[1];
 
-					if (isValid(visited, y, x)) {
+					if (isValid(visited, y, x)) { //building(1) which exists(!= length) and not visited (!= 2)
 						queue.add(new int[] { y, x });
 						visited[y][x] = 2;
 						reach[y][x]++;
@@ -81,7 +84,7 @@ class Solution {
 	}
 
 	private boolean isValid(int[][] visited, int i, int j) {
-		if (i < 0 || j < 0 || i == row || j == col || grid[i][j] == 2 || 
+		if (i < 0 || j < 0 || i == row || j == col || grid[i][j] == 2 ||
 				grid[i][j] == 1 || visited[i][j] == 2)
 			return false;
 

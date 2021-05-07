@@ -20,6 +20,15 @@ public class Array {
             return count;
         }
     }
+    //this problem can contain -ve numbers hence solve using map
+    //if only +ve numbers then use variable sliding window if sum > i++
+// -1, 1, 0, 7         map    0 -> 3
+//                           -1 -> 1
+//                            7 -> 1
+
+//           7
+//        0, 7
+// -1, 1, 0, 7
 
     //		https://leetcode.com/problems/maximum-product-subarray/
     public class MaximumProductSubarray152 {

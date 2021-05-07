@@ -2,7 +2,7 @@
 public class Main {
 
 	public static void main(String[] args) {
-		Solution sol = new Solution();
+		SearchinRotatedSortedArray33 sol = new SearchinRotatedSortedArray33();
 
 		int[] nums = {4,5,6,7,0,1,2};
 		int target = 0;

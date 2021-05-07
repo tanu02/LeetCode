@@ -3,7 +3,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        FindFirstandLastPositionofElementinSortedArray34 sol = new FindFirstandLastPositionofElementinSortedArray34();
 
         int[] nums = {5, 7, 7, 8, 8, 10};
         int target = 8;

@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Solution sol = new Solution();
+		PeakElement162 sol = new PeakElement162();
 
 		int[] arr5 = { 1, 2, 3, 1 };
 		int[] arr1 = { 1, 2, 1, 3, 5, 6, 4 };

@@ -1,6 +1,6 @@
 package leetcode;
-
-class Solution {
+//array is sorted row wise : mn is sorted start from 0 to mn
+class Searcha2DMatrix74 {
 	int row = 0; 
 	int col = 0; 
     public boolean searchMatrix(int[][] matrix, int target) {

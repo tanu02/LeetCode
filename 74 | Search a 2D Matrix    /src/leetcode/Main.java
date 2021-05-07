@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Solution sol = new Solution();
+		Searcha2DMatrix74 sol = new Searcha2DMatrix74();
 		int[][]arr = {
 				{1,   3,  5,  7},
 				{10, 11, 16, 20},

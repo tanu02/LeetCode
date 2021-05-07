@@ -47,7 +47,7 @@ public class Java8 {
     }
 
     public void primitiveArrayToNonPrimitiveArray(int[] arr) {
-        List<Integer> list = Arrays.stream(arr)
+        List<Integer> list = Arrays.stream(arr) //permutation
                             .boxed()
                             .collect(Collectors.toList());
     }

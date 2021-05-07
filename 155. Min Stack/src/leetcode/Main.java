@@ -14,11 +14,77 @@ public class Main {
         minStack.pop();
         System.out.println(minStack.top());    // return 0
         System.out.println(minStack.getMin()); // return -2
+        System.out.println(minStack.top()); //0
 
     }
 }
 
-class MinStack {
+class MyStack<T extends Comparable> {
+    List<T> list;
+
+    MyStack() {
+        list = new LinkedList<>();
+    }
+
+    public void push(T item) {
+        list.add(item);
+    }
+
+    public void pop() {
+        list.remove(getSize() - 1);
+    }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
+    public int getSize() {
+        return list.size();
+    }
+
+    public T peek() {
+        return list.get(getSize() - 1);
+    }
+
+}
+
+class MinStack<E extends Comparable> {
+
+    MyStack<E> stack;
+    MyStack<E> minStack;
+
+    public MinStack() {
+        stack = new MyStack<>();
+        minStack = new MyStack<>();
+    }
+
+    public void push(E item) {
+        stack.push(item);
+        if (minStack.isEmpty() || item.compareTo(minStack.peek()) <= 0) {
+            minStack.push(item);
+        }
+    }
+
+    public void pop() {
+
+        if (stack.peek().equals(minStack.peek())) {
+            minStack.pop();
+        }
+        stack.pop();
+    }
+
+    public E top() {
+        return stack.peek();
+    }
+
+    public E getMin() {
+        return minStack.peek();
+    }
+}
+
+/*
+
+class MinStack<T extends Comparable> {
 
     /**
      * initialize your data structure here.
@@ -68,6 +134,7 @@ class MinStack {
 
 }
 
+*/
 /**
  * Your MinStack object will be instantiated and called as such:
  * MinStack obj = new MinStack();
@@ -75,7 +142,8 @@ class MinStack {
  * obj.pop();
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
- */
+ *//*
+
 
 class MinValStack<E> {
     List<E> list;
@@ -103,3 +171,5 @@ class MinValStack<E> {
 
     }
 }
+*/
+//reference https://codereview.stackexchange.com/questions/55386/stack-with-getminimum-operation

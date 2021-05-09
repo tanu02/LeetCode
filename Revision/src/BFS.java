@@ -30,7 +30,7 @@ class ShortestDistancefromAllBuildings317 {
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if (grid[i][j] == 1) {
+                if (grid[i][j] == 1) { //valid building
                     bfs(i, j);
                     totalBuildings++;
                 }
@@ -54,25 +54,26 @@ class ShortestDistancefromAllBuildings317 {
     private void bfs(int i, int j) {
         Queue<int[]> queue = new LinkedList<>();
         int[][] visited = new int[row][col];
+
         queue.add(new int[] { i, j });
         int dis = 0;
 
         while (!queue.isEmpty()) {
 
             int size = queue.size();
-            dis++; // same level same distance
+            dis++; // this distance is for neighbours
             for (int m = 0; m < size; m++) { // level
-                int[] build = queue.poll();
+                int[] currentBuilding = queue.poll();
 
                 for (int[] dir : directions) { // child
-                    int y = build[0] + dir[0];
-                    int x = build[1] + dir[1];
+                    int rr = currentBuilding[0] + dir[0];
+                    int cc = currentBuilding[1] + dir[1];
 
-                    if (isValid(visited, y, x)) { //building(1) which exists(!= length) and not visited (!= 2)
-                        queue.add(new int[] { y, x });
-                        visited[y][x] = 2;
-                        reach[y][x]++;
-                        dist[y][x] += dis;
+                    if (isValid(visited, rr, cc)) { //building(1) which exists(!= length) and not visited (!= 2)
+                        queue.add(new int[] { rr, cc });
+                        visited[rr][cc] = 2;
+                        reach[rr][cc]++;  //current building is reachable from parent
+                        dist[rr][cc] += dis;
                     }
                 }
             }
@@ -159,7 +160,10 @@ class ShortestPathinBinaryMatrix1091 {
 
     private boolean isValid(int i, int j, int[][] grid) {
         if (i < 0 || i == grid.length || j < 0 || j == grid[0].length || grid[i][j] == 1 || visited[i][j] == 1) // if not visited
-            return false;
+            return false;   //we have to find path of 0s
         return true;
     }
 }
+//    0 ->   0 ->  0
+//    1      1     0
+//    1      1     0

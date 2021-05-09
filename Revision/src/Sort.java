@@ -27,7 +27,9 @@ class QuickSort {
 
         swap(j, end, arr); //swap pivot
         return j;
-    }
+    } //    6  3  5        -> 3 6 5
+//          j  i(swap)          j
+//
 
     private void swap(int i, int j, int[] arr) {
         int temp = arr[j];

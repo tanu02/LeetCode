@@ -68,5 +68,10 @@ public class Java8 {
         int[][] output1 = Arrays.copyOfRange(arr1, 0, k); // 2 d array copy a range
 //                                                      [   )
     }
+
+    public void concepts(){
+        //in normal bfs we find distance - level wise count++;
+        //topo sort every element in the queue was put up in the answer inside while loop  count++
+    }
 }
 

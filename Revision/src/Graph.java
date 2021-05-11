@@ -83,6 +83,8 @@ class LongestConsecutiveSequence128 {
         return maxLength;
     }
 }
+//out of given numbers find how many consecutive numbers are there out of which find the max length
+
 //create a set of all the elements
 //if arr[I] is the smallest element count the sequence[set does not contain smaller element than arr[I]]
 //return max length

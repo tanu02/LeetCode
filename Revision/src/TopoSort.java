@@ -33,8 +33,8 @@ class CourseSchedule207 {
             int start = prerequisites[i][0];
             int end = prerequisites[i][1];
 
-            List<Integer> list = adjMap.getOrDefault(end, new ArrayList<>());
-            list.add(start);
+            List<Integer> list = adjMap.getOrDefault(end, new ArrayList<>()); // (2, 1) means 1 -> 2 (2 will come after 1)
+            list.add(start);                                                  // 1(end) -> 2(start) map
             adjMap.put(end, list);
 
             indegreeCount[start]++;                 //save dependent nodes indegree > 0
@@ -53,10 +53,9 @@ class CourseSchedule207 {
             for (int i = 0; i < size; i++) {
                 Integer node = queue.poll();
                 count++;
-                List<Integer> list = adjMap.get(node);
 
-                if (list != null) {
-                    for (int elem : list) {
+                if(adjMap.containsKey(node)){
+                    for (int elem : adjMap.get(node)) {
                         indegreeCount[elem]--;
                         if (indegreeCount[elem] == 0) queue.add(elem);
                     }
@@ -67,7 +66,7 @@ class CourseSchedule207 {
     }
 }
 
-//prerequisites should not be null or of 0 size
+//prerequisites should not be null | number of should be >= 0
 //create adjMap
 //update indegrees
 //enqueue  all 0 indegree nodes
@@ -89,17 +88,17 @@ class CourseScheduleII210 {
             int start = prerequisites[i][0];
             int end = prerequisites[i][1];
 
-            List<Integer> list = adjMap.getOrDefault(end, new ArrayList<>()); //{1,0} means 1 is dependent on 0 : 0 -> 1
-            list.add(start);                                                  // 0 - 1 in map
+            List<Integer> list = adjMap.getOrDefault(end, new ArrayList<>()); // (2, 1) means 1 -> 2 (2 will come after 1)
+            list.add(start);                                                  // 1(end) -> 2(start) map
             adjMap.put(end, list);
-            indegreeCount[start]++;                                           //{1, 0}      0->1       increase indegree of 1
+            indegreeCount[start]++;                                           // 2 indegree++
         }
 
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
             if (indegreeCount[i] == 0)
-                queue.add(i); //it is possible due to cycle queue is empty so don't rely on queue size
-        }
+                queue.add(i); //if there are 2 elements and there is a cycle then queue will be empty
+        }                       //hence we should count how many nodes we actually processed
 
         int index = 0;
         int[] output = new int[numCourses];
@@ -109,11 +108,10 @@ class CourseScheduleII210 {
 
             for (int i = 0; i < size; i++) {
                 Integer node = queue.poll();
-                output[index++] = node; //first update output then increment
+                output[index++] = node; //first update output then increment hence after last loop index will be equal to length
 
-                List<Integer> list = adjMap.get(node); //hence after last loop index will be equal to length
-                if (list != null) {
-                    for (Integer elem : list) {
+                if(adjMap.containsKey(node)) {   //
+                    for (Integer elem : adjMap.get(node)) {
                         indegreeCount[elem]--;
                         if (indegreeCount[elem] == 0) queue.offer(elem);
                     }

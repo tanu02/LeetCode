@@ -31,7 +31,7 @@ public class Array {
 // -1, 1, 0, 7
 
     //		https://leetcode.com/problems/maximum-product-subarray/
-    public class MaximumProductSubarray152 {
+    public class MaximumProductSubarray152 { //maximise the product - elements can be -ve
         public int maxProduct(int[] nums) {
             if (nums == null || nums.length == 0) return 0;
 
@@ -69,6 +69,7 @@ public class Array {
             return maxSum;
         }
     }
+//add the previous sum if it is > 0
 
     //https://leetcode.com/problems/two-sum/
     public class TwoSum {
@@ -87,6 +88,7 @@ public class Array {
             return new int[0];
         }
     }
+//had it been almost equal to target then use treemap use ceil/floor to find nearest diff
 
     public class TwoSumSorted {
         public int[] twoSum(int[] numbers, int target) {
@@ -108,6 +110,8 @@ public class Array {
             return new int[]{-1, -1};
         }
     }
+//if sum > target move left
+//if sum <  target move right
 
     public class ProductofArrayExceptSelf238 {
         public int[] productExceptSelf(int[] nums) {
@@ -133,6 +137,7 @@ public class Array {
 
         }
     }
+//create right array, every index will have product of elements after that index
 
     class Sum3 {
 
@@ -180,6 +185,10 @@ public class Array {
     }
 
 }
+//Sort
+//skip duplicate
+//2 sum sorted
+//skip duplicate
 
 
 class MajorityElement169 {
@@ -219,3 +228,6 @@ class MajorityElement169 {
         return counter;
     }
 }
+//there will be a majority element for sure
+//min 2 elements
+//merge sort types every level gives count of majority element nlogn

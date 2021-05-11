@@ -48,8 +48,8 @@ public class Java8 {
 
     public void primitiveArrayToNonPrimitiveArray(int[] arr) {
         List<Integer> list = Arrays.stream(arr) //permutation
-                            .boxed()
-                            .collect(Collectors.toList());
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     public void mapSyntax() {
@@ -69,9 +69,12 @@ public class Java8 {
 //                                                      [   )
     }
 
-    public void concepts(){
+    public void concepts() {
         //in normal bfs we find distance - level wise count++;
         //topo sort every element in the queue was put up in the answer inside while loop  count++
+
+//course schedule: if queue is used it can contain nodes which are not present in adj map number of courses > than  dependencies
+//connected  components can  contain like 5 nodes and only 1 edge
     }
 }
 

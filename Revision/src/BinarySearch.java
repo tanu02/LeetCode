@@ -54,8 +54,8 @@ class SearchinRotatedSortedArray33 {
     }
 }
 
-// 1 2 3 4              inflect = 4
-// 3 4 1 2              inflect = 4
+// 1 2 3 4              inflect = 1 [search from 0 to len-1]
+// 3 4 1 2              inflect = 1 [either search from (0 , inflect -1) or (inflect, len-1)]
 
 
 class FindMinimuminRotatedSortedArrayII154 {

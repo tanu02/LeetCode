@@ -1,3 +1,5 @@
+package DS;
+
 public class Stack {
 }
 

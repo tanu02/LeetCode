@@ -1,3 +1,5 @@
+package DS;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -69,7 +71,7 @@ class MinStack {
     }
 }
 
-//Generic Stack
+//Generic DS.Stack
 class MyStackG<T extends Comparable> {
     List<T> list;
 
@@ -98,7 +100,7 @@ class MyStackG<T extends Comparable> {
     }
 
 }
-//Generic Stack
+//Generic DS.Stack
 class MinStackG<E extends Comparable> {
 
     MyStackG<E> stack;

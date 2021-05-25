@@ -1,3 +1,5 @@
+package DS;
+
 import java.util.LinkedList;
 import java.util.*;
 import java.util.stream.Stream;

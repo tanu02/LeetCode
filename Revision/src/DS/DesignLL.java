@@ -1,3 +1,7 @@
+package DS;
+
+import DS.Node;
+
 public class DesignLL {
 }
 

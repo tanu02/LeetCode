@@ -1,3 +1,5 @@
+package DS;
+
 public class LinkedList {
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {

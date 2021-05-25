@@ -35,7 +35,7 @@ class NetworkDelayTime743 {
 //nodes count
         int count = 0;
 
-//logic
+//logic -> poll, if visited, visit, if dst, adj
         while (!queue.isEmpty()) {
             Node node = queue.poll();
             if (visitedSet.contains(node.val)) continue; //if already visited do not process
@@ -51,7 +51,7 @@ class NetworkDelayTime743 {
                 int to = edge[0];
                 int newDist = node.weight + edge[1];
 
-                if (visitedSet.contains(to)) continue; //already visited
+                if (visitedSet.contains(to)) continue;  //can check visit as it is just an int unlike other q either a node  is present or a cell
 
                 if (newDist < distance.get(to)) { // distance is less than what exists
                     distance.put(to, newDist);
@@ -99,7 +99,7 @@ class CheapestFlightsWithinKStops787 {
         Queue<Node1> queue = new PriorityQueue<>((n1, n2) -> Integer.compare(n1.distance, n2.distance));
         queue.offer(new Node1(src, 0, 0));
 
-//logic
+//logic -> poll, if dst, if stops k+1, adj
         while (!queue.isEmpty()) {
             Node1 node = queue.poll();
             int from = node.val;
@@ -158,7 +158,7 @@ class PathWithMinimumEffort1631 {
             Arrays.fill(arr, Integer.MAX_VALUE);
         }
 
-//logic - > poll,  check visited,  visit, valid neighbors, if eff is less then enqueue
+//logic - > poll, if visited, visit, if dst, adj, enqueue
         while (!queue.isEmpty()) {
             Node node = queue.poll();
             int r = node.loc[0];

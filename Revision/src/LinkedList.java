@@ -44,27 +44,20 @@ public class LinkedList {
         return p1;
 
     }
- //1)
-     //p1        3 4 5     intersection is 4
-    // p2    1 2 6 4 5          p1   3 4 5 1 2 6 4
-//                              p2   1 2 6 4 5 3 4
-//note how p1 and p2 traverse same distance until they reach 4
-// 2)
-    //had there been no intersection
-      //p1         3 7 4
-      // p2    1 2 6 8 5
-//still p1 and p2 traverse same distance
-// p1           3 7 4 1 2 6 8 5 null
-//pw            1 2 6 8 5 3 7 4 null
+//p1        3 4 5           p1   3 4 5 1 2 6 4
+//p2    1 2 6 4 5           p2   1 2 6 4 5 3 4
+// intersection is 4 p1 and p2 traverse same distance until they reach 4
 
-//3)
-       // 1 2 3 null
-      //  4 5 6 null
-    //intersection is null p1 1 2 3 null
-    //                     p2 4 5 6 null
+//p1         3 7 4       3 7 4 1 2 6 8 5 null
+//p2     1 2 6 8 5       1 2 6 8 5 3 7 4 null
+//last element null is the intersection
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+//p1         1 2 3 null
+//p2         4 5 6 null
+// intersection is null
 
+
+    ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
         int carry = 0;
         ListNode head = new ListNode();
@@ -72,16 +65,20 @@ public class LinkedList {
 
         while (l1 != null || l2 != null || carry != 0) {
             //any of these exist keep summing
+            int sum = carry;
 
-            int a = l1 != null ? l1.val : 0;
-            int b = l2 != null ? l2.val : 0;
-            int sum = a + b + carry;
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
 
             l3.next = new ListNode(sum % 10);
             l3 = l3.next;
-
-            if (l1 != null) l1 = l1.next;
-            if (l2 != null) l2 = l2.next;
 
             if (sum >= 10) carry = 1;
             else carry = 0;
@@ -142,8 +139,8 @@ class PalindromeLinkedList {
         if (node == null) return true;
 
         if (!checkPalindrome(node.next)) return false;  //inner branch found mismatch
-        if (node.val != listHead.val) return false; //current node found mismatch
 
+        if (node.val != listHead.val) return false; //current node found mismatch
         listHead = listHead.next;
 
         return true;

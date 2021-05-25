@@ -6,27 +6,29 @@ public class CourseSchedule207 {
 
         if (numCourses <= 0 || prerequisites == null) return true;
 
+//graph, indegree
         Map<Integer, List<Integer>> adjMap = new HashMap<>();
         int[] indegreeCount = new int[numCourses];
+
+        for (int i = 0; i < numCourses; i++) {
+            adjMap.put(i, new ArrayList<>());
+        }
 
         for (int i = 0; i < prerequisites.length; i++) {
             int start = prerequisites[i][0];
             int end = prerequisites[i][1];
 
-            List<Integer> list = adjMap.getOrDefault(end, new ArrayList<>());
-            list.add(start);
-            adjMap.put(end, list);
-
+            adjMap.get(end).add(start);
             indegreeCount[start]++;                 //save dependent nodes indegree > 0
-
         }
+//queue
         Queue<Integer> queue = new LinkedList<>();
 
         for (int i = 0; i < numCourses; i++) {
             if (indegreeCount[i] == 0) queue.offer(i); //retrieve those nodes which have 0 indegree
         }
         int count = 0;
-
+//logic -> poll, count++, adj, --indegree, enqueue 0 indegree
         while (!queue.isEmpty()) {
             int size = queue.size();
 
@@ -34,11 +36,9 @@ public class CourseSchedule207 {
                 Integer node = queue.poll();
                 count++;
 
-                if (adjMap.containsKey(node)) { //adjMap contains only dependent nodes
-                    for (int elem : adjMap.get(node)) {
-                        indegreeCount[elem]--;
-                        if (indegreeCount[elem] == 0) queue.add(elem);
-                    }
+                for (int elem : adjMap.get(node)) {
+                    indegreeCount[elem]--;
+                    if (indegreeCount[elem] == 0) queue.add(elem);
                 }
             }
         }

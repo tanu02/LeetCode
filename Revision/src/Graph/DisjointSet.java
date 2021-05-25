@@ -1,3 +1,5 @@
+package Graph;
+
 import java.util.*;
 
 public class DisjointSet {
@@ -78,7 +80,7 @@ class LongestConsecutive1Sequence128 {
     }
 }
 
-//261. Graph Valid Tree
+//261. Graph.Graph Valid Tree
 //https://leetcode.com/problems/graph-valid-tree/
 class GraphValidTree261 {
     public boolean validTree(int n, int[][] edges) {

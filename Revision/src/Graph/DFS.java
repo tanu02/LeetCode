@@ -1,3 +1,5 @@
+package Graph;
+
 public class DFS {
 }
 
@@ -95,7 +97,7 @@ class WordSearch1 {
 //                    <------
 //if you return back to n1 from n3 and start processing n2 - will give a loop
 // hence visit n1
-// Dijkstra, island problems, normal dfs
+// Graph.Graph.Dijkstra, island problems, normal dfs
 
 //        n1 -> n2 -> n3
 //            <------

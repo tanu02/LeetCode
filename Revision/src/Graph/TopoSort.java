@@ -1,6 +1,5 @@
 package Graph;
 
-import java.util.LinkedList;
 import java.util.*;
 
 public class TopoSort {
@@ -21,34 +20,35 @@ public class TopoSort {
  */
 }
 
-
 class CourseSchedule207 {
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
 
         if (numCourses <= 0 || prerequisites == null) return true;
 
+//graph, indegree
         Map<Integer, List<Integer>> adjMap = new HashMap<>();
         int[] indegreeCount = new int[numCourses];
+
+        for (int i = 0; i < numCourses; i++) {
+            adjMap.put(i, new ArrayList<>());
+        }
 
         for (int i = 0; i < prerequisites.length; i++) {
             int start = prerequisites[i][0];
             int end = prerequisites[i][1];
 
-            List<Integer> list = adjMap.getOrDefault(end, new ArrayList<>()); // (2, 1) means 1 -> 2 (2 will come after 1)
-            list.add(start);                                                  // 1(end) -> 2(start) map
-            adjMap.put(end, list);
-
+            adjMap.get(end).add(start);
             indegreeCount[start]++;                 //save dependent nodes indegree > 0
-
         }
+//queue
         Queue<Integer> queue = new LinkedList<>();
 
         for (int i = 0; i < numCourses; i++) {
             if (indegreeCount[i] == 0) queue.offer(i); //retrieve those nodes which have 0 indegree
         }
         int count = 0;
-
+//logic -> poll, count++, adj, --indegree, enqueue 0 indegree
         while (!queue.isEmpty()) {
             int size = queue.size();
 
@@ -56,11 +56,9 @@ class CourseSchedule207 {
                 Integer node = queue.poll();
                 count++;
 
-                if(adjMap.containsKey(node)){
-                    for (int elem : adjMap.get(node)) {
-                        indegreeCount[elem]--;
-                        if (indegreeCount[elem] == 0) queue.add(elem);
-                    }
+                for (int elem : adjMap.get(node)) {
+                    indegreeCount[elem]--;
+                    if (indegreeCount[elem] == 0) queue.add(elem);
                 }
             }
         }
@@ -83,43 +81,48 @@ class CourseScheduleII210 {
         if (prerequisites == null || numCourses <= 0)
             return new int[numCourses];
 
+//graph, indegree
         Map<Integer, List<Integer>> adjMap = new HashMap<>();
         int[] indegreeCount = new int[numCourses];
 
-        for (int i = 0; i < prerequisites.length; i++) {
-            int start = prerequisites[i][0];
-            int end = prerequisites[i][1];
-
-            List<Integer> list = adjMap.getOrDefault(end, new ArrayList<>()); // (2, 1) means 1 -> 2 (2 will come after 1)
-            list.add(start);                                                  // 1(end) -> 2(start) map
-            adjMap.put(end, list);
-            indegreeCount[start]++;                                           // 2 indegree++
+        for (int i = 0; i < numCourses; i++) {
+            adjMap.put(i, new ArrayList<>());
         }
 
+        for (int i = 0; i < prerequisites.length; i++) {
+            int start = prerequisites[i][0];
+            int end = prerequisites[i][1]; //end depends on start
+
+            adjMap.get(end).add(start);   //{1,0} means 1 is dependent on 0 : 0 -> 1
+            indegreeCount[start]++;       //{1, 0}      0->1       increase indegree of 1
+        }
+
+//queue
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
             if (indegreeCount[i] == 0)
-                queue.add(i); //if there are 2 elements and there is a cycle then queue will be empty
-        }                       //hence we should count how many nodes we actually processed
+                queue.add(i); //it is possible due to cycle queue is empty so don't rely on queue size
+        }
 
+//outputlist
         int index = 0;
         int[] output = new int[numCourses];
 
+//logic  -> poll, add in sol, adj, --indegree, enqueue 0 indegree
         while (!queue.isEmpty()) {
             int size = queue.size();
 
             for (int i = 0; i < size; i++) {
                 Integer node = queue.poll();
-                output[index++] = node; //first update output then increment hence after last loop index will be equal to length
+                output[index++] = node; //first update output then increment
 
-                if(adjMap.containsKey(node)) {   //
-                    for (Integer elem : adjMap.get(node)) {
-                        indegreeCount[elem]--;
-                        if (indegreeCount[elem] == 0) queue.offer(elem);
-                    }
+                for (Integer elem : adjMap.get(node)) {
+                    indegreeCount[elem]--;
+                    if (indegreeCount[elem] == 0) queue.offer(elem);
                 }
             }
         }
+
         return index == numCourses ? output : new int[0];
     }
 }
@@ -128,74 +131,60 @@ class CourseScheduleII210 {
 
 class AlienDictionary269 {
     public String alienOrder(String[] words) {
-
-//1) indegreeMap -> unique nodes
-//2) adjMap
-//3) Queue from indegreeMap containing 0 as indegree
-//4) Dequeue character put in string builder
-//5) Reduce indegree by 1 of neighbours
-//6) Enqueue if indegree is 0
-//7) Step 4)
         if (words == null) return "";
 
+//graph, indegree
         Map<Character, Integer> indegreeMap = new HashMap<>();
         Map<Character, List<Character>> adjMap = new HashMap<>();
 
-        //create indegree map with all unique nodes
         for (String word : words) {
             for (char c : word.toCharArray()) {
-                indegreeMap.put(c, 0); // unique nodes
-            }//in course schedule we had numCourses predefined and hence the array size
-        }    //here we have to find all the unique entries
+                indegreeMap.put(c, 0); // unique nodes in course schedule we had numCourses predefined and hence the array size
+                adjMap.put(c, new ArrayList<>());
+            }
+        }
 
-        //create adjMap and update indegree of characters
         for (int i = 0; i < words.length - 1; i++) {
             String w1 = words[i];
-            String w2 = words[i+1];
-            if(w1.length() > w2.length() && w1.startsWith(w2)) return ""; //abc ab
+            String w2 = words[i + 1];
+            if (w1.length() > w2.length() && w1.startsWith(w2)) return "";
 
             int length = Math.min(w1.length(), w2.length());  //abcd ab (prefix) will also be covered though they will not 																	generate any mapping
             for (int j = 0; j < length; j++) {
 
                 if (w1.charAt(j) != w2.charAt(j)) {
-                    List<Character> list = adjMap.getOrDefault(w1.charAt(j), new ArrayList<>()); // ab cd -> a != c
-                    list.add(w2.charAt(j));                                                      // a -> c
-                    adjMap.put(w1.charAt(j), list);
+                    adjMap.get(w1.charAt(j)).add(w2.charAt(j));// ab cd -> a != c
                     indegreeMap.put(w2.charAt(j), indegreeMap.get(w2.charAt(j)) + 1);  //update indegree of every character
                     break;
                 }
             }
-
         }
 
-        //populate all indegree  0 characters
+//queue
         Queue<Character> queue = new LinkedList<>();
         for (Character c : indegreeMap.keySet()) {
             if (indegreeMap.get(c) == 0)                //fetch all the nodes whose indegree is 0
                 queue.offer(c);
         }
 
+//output string
         StringBuilder sb = new StringBuilder(); //we have to output a word
 
-        //poll indegree = 0 characters and append in the output
-        //explore its dependents
+//logic -> poll, append in output, adj, --indegree, enqueue 0 indegree
         while (!queue.isEmpty()) {
 
             int size = queue.size();
 
             for (int i = 0; i < size; i++) {
                 Character c = queue.poll();
-                sb.append(c);                                                    //a
-                if (adjMap.containsKey(c)) {
-                    for (Character next : adjMap.get(c)) {                       // a -> b, c or c -> b,b
-                        indegreeMap.put(next, indegreeMap.get(next) - 1);        // if b has 0 indegree enqueue it
-                        if (indegreeMap.get(next) == 0) queue.offer(next);
-                    }
+                sb.append(c);
+
+                for (Character next : adjMap.get(c)) {                       // a -> b, c or c -> b,b
+                    indegreeMap.put(next, indegreeMap.get(next) - 1);        // if b has 0 indegree enqueue it
+                    if (indegreeMap.get(next) == 0) queue.offer(next);
                 }
             }
         }
         return sb.length() == indegreeMap.size() ? sb.toString() : "";
     }
 }
-
-

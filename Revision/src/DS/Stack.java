@@ -13,6 +13,7 @@ class NearestLeftSmall {
         int ans;
         int[] output = new int[arr.length];
 
+//pop all >= elements, empty stack return -1, else peek
         for (int i = 0; i < arr.length; i++) {
             while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {
                 stack.pop();
@@ -34,15 +35,13 @@ class NearestLeftSmall {
 //          |      |
 //          |   |  |
 //       |  | _ |  |
-
 //      [1, 3, 0, 2, 5]
 //       0  1  2  3  4
-
-//   compare with i  and pop every > element creating a choking point of current element
-
+//compare with i  and pop every > element creating a choking point of current element
 //smallest in left so loop starts from left
 
 
+//current index, pop all <= elements, if empty then index+1 else index-peekIndex
 class StockSpanner {
 
     java.util.Stack<Integer[]> stack;
@@ -70,6 +69,10 @@ class StockSpanner {
     }
 }
 
+//left smallest -> pop all >= in left, if empty ans -1 else peek
+//right smallest -> pop all >= in right, if empty ans -1 else peek
+//width -> right-left-1
+//max area -> max(width * height)
 class LargestRectangleInHistogram {
 
     public int largestRectangleArea(int[] heights) {

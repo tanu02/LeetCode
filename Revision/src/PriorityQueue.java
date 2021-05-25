@@ -8,9 +8,9 @@ public class PriorityQueue {
 class TopKFrequentElements {
 
     public int[] topKFrequent(int[] nums, int k) {
-        if (k == 0 || nums == null || nums.length == 0)
-            return new int[0];
+        if (k == 0 || nums == null || nums.length == 0) return new int[0];
 
+//freq map
         int[] outputArr = new int[k];
         Map<Integer, Integer> frequencyMap = new HashMap<>();
 
@@ -18,8 +18,10 @@ class TopKFrequentElements {
             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
 
-        Queue<Integer> topKQueue = new java.util.PriorityQueue<>((a, b) -> frequencyMap.get(a) - frequencyMap.get(b));
+//queue
+        Queue<Integer> topKQueue = new java.util.PriorityQueue<>((n1, n2) -> frequencyMap.get(n1) - frequencyMap.get(n2));
 
+//logic
         for (Integer elem : frequencyMap.keySet()) {
             if (topKQueue.size() < k)  //keep piling till k size
                 topKQueue.offer(elem);
@@ -28,7 +30,6 @@ class TopKFrequentElements {
                 topKQueue.poll();        //current elem has to be greater than smallest elem in queue
                 topKQueue.add(elem);
             }
-
         }
 
         for (int i = k - 1; i >= 0; i--) {   //queue has [0, 5, 10]
@@ -47,12 +48,13 @@ class MergeIntervals56 {
     public int[][] merge(int[][] intervals) {
         if (intervals == null || intervals.length == 0 || intervals[0].length == 0) return new int[0][0];
 
+//sort start time
         Arrays.sort(intervals, (int1, int2) -> Integer.compare(int1[start], int2[start]));
-        //  Stream.of(intervals).forEach(int1 -> System.out.println(Arrays.toString(int1)));
 
         LinkedList<int[]> outputList = new LinkedList<>();
         outputList.add(intervals[0]);
 
+//if overlap merge & enqueue else enqueue
         for (int i = 1; i < intervals.length; i++) {
 
             if (intervals[i][start] <= outputList.getLast()[end]) { //overlap
@@ -76,16 +78,17 @@ class MeetingRoomsII {
     public int minMeetingRooms(int[][] intervals) {
         if (intervals == null || intervals.length == 0 || intervals[0].length == 0) return 0;
 
-        // Arrays.sort(intervals, (int1, int2) -> Integer.compare(int1[start], int2[start]));
-        Arrays.sort(intervals, (int1, int2) -> Integer.compare(int1[end], int2[end]));
-        Stream.of(intervals).forEach(int3 -> System.out.println(Arrays.toString(int3)));
-        Queue<Integer> queue = new java.util.PriorityQueue<>((end1, end2) -> Integer.compare(end1, end2));
+//sort start time
+        Arrays.sort(intervals, (int1, int2) -> Integer.compare(int1[start], int2[start]));
 
+//queue
+        Queue<Integer> queue = new java.util.PriorityQueue<>((end1, end2) -> Integer.compare(end1, end2));
         queue.add(intervals[0][end]); //push earliest completion time [as the array is sorted]
 
+//if no overlap poll & enqueue else enqueue
         for (int i = 1; i < intervals.length; i++) {
-            if (intervals[i][start] >= queue.peek()) {
-                queue.poll();//non overlapping existing room
+            if (intervals[i][start] >= queue.peek()) { //non overlapping existing room
+                queue.poll();
             }
 
             queue.add(intervals[i][end]); //insert current room
@@ -101,8 +104,7 @@ class MeetingRooms252 {
     public boolean canAttendMeetings(int[][] intervals) {
         if (intervals == null || intervals.length == 0 || intervals[0].length == 0) return true;
 
-        Arrays.sort(intervals, (int1, int2) -> Integer.compare(int1[end], int2[end]));
-        //Arrays.sort(intervals, (int1, int2) -> Integer.compare(int1[start], int2[start])); //won't matter if it is start or end as we dont need info about more than 1 hop unlike meeting room2
+        Arrays.sort(intervals, (int1, int2) -> Integer.compare(int1[start], int2[start])); //won't matter if it is start or end as we dont need info about more than 1 hop unlike meeting room2
         for (int i = 1; i < intervals.length; i++) {
             if (intervals[i][start] < intervals[i - 1][end]) return false;
         }

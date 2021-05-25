@@ -97,7 +97,8 @@ class LongestConsecutiveSequence128 {
 //2) only edges -> disconnected -> loop edges -> disjoint and find if maybe loop/components/connected[graph is tree]
 //3) Node containing edges given -> connected -> src node then loop adj edges -> clone graph
 //4) array index is node and value in index edges -> [[1,2][2,0],[0,1]]     0 - 1
-
+//                                                                          |  /
+//                                                                           2
 
 class CloneGraph133 {
     Map<Node, Node> cloneMap;
@@ -184,5 +185,3 @@ class CopyListwithRandomPointer138 {
 
 
 }
-                                                                   //       |  /
-                                                                   //        2

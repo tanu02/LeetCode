@@ -1,4 +1,3 @@
-import java.util.PriorityQueue;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -69,12 +68,41 @@ public class Java8 {
 //                                                      [   )
     }
 
+    public void populateArrayWithDefaultVaue(int[] rank) { //disJoing/Kruskal
+        Arrays.fill(rank, 1);
+    }
+
     public void concepts() {
         //in normal bfs we find distance - level wise count++;
         //topo sort every element in the queue was put up in the answer inside while loop  count++
 
 //course schedule: if queue is used it can contain nodes which are not present in adj map number of courses > than  dependencies
 //connected  components can  contain like 5 nodes and only 1 edge
+    }
+
+    public void invertbinaryColorNode() {
+        int color = 1;       //1
+        int invert = color ^ 1; //0
+    }
+
+    public void fill2DArray(int[][] dp) {
+        for (int[] arr : dp) {
+            Arrays.fill(arr, -1);
+        }
+    }
+
+    public void lengths() {
+        String s = "";
+        int[] arr = new int[1];
+        List<Integer> list = new ArrayList<>();
+
+        int a = arr.length;
+        s.length();
+        list.size();
+    }
+
+    void print2dArray(int[][] arr) {
+        Stream.of(arr).forEach(arr1 -> System.out.println(Arrays.toString(arr1)));
     }
 }
 

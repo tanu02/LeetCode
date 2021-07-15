@@ -54,17 +54,18 @@ public class NetworkDelayTime743 {
         }
         return -1;
     }
-}
+    class Node {
+        int val;
+        int weight;
 
-class Node {
-    int val;
-    int weight;
-
-    Node(int val, int weight) {
-        this.val = val;
-        this.weight = weight;
+        Node(int val, int weight) {
+            this.val = val;
+            this.weight = weight;
+        }
     }
 }
+
+
 
 class Main7 {
     public static void main(String[] args) {

@@ -51,17 +51,18 @@ class CheapestFlightsWithinKStops787 {
         return -1;
 
     }
-}
 
-class Node1 {
-    int val;
-    int distance;
-    int stops;
+    class Node1 {
+        int val;
+        int distance;
+        int stops;
 
-    public Node1(int val, int distance, int stops) {
-        this.val = val;
-        this.distance = distance;
-        this.stops = stops;
+        public Node1(int val, int distance, int stops) {
+            this.val = val;
+            this.distance = distance;
+            this.stops = stops;
+        }
+
     }
 
 }

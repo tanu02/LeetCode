@@ -82,6 +82,7 @@ class LongestConsecutive1Sequence128 {
 
 //261. Graph.Graph Valid Tree
 //https://leetcode.com/problems/graph-valid-tree/
+//connected, no cycles and n-1 edges
 class GraphValidTree261 {
     public boolean validTree(int n, int[][] edges) {
         int edgeCount = 0;

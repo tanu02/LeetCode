@@ -104,5 +104,14 @@ public class Java8 {
     void print2dArray(int[][] arr) {
         Stream.of(arr).forEach(arr1 -> System.out.println(Arrays.toString(arr1)));
     }
+
+    void  stringInteger(int i, String s){
+        Integer.parseInt(s.substring(0, i + 1)); //string  to integer  decode ways
+        String.valueOf(i);//integer to string
+    }
+
+    void listToSet(ArrayList<Integer> list){
+        Set<Integer> set = new HashSet<>(list);
+    }
 }
 

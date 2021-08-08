@@ -1,7 +1,7 @@
 public class Matrix {
 }
 
-//Array is sorted row wise and col wise
+//DS.Array is sorted row wise and col wise
 class SearchA2DMatrixII {
     public boolean searchMatrix(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0)

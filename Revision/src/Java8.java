@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Java8 {
@@ -112,6 +113,16 @@ public class Java8 {
 
     void listToSet(ArrayList<Integer> list){
         Set<Integer> set = new HashSet<>(list);
+    }
+    void printArray(){
+        int[] arr = {1};
+        System.out.println(Arrays.toString(arr)); //inject given array inside Arrays.toString()
+    }
+    void concatenate2Arrays(){
+        int[] arr1 = {1};
+        int[] arr2 = {2};
+        int[] arr3 = IntStream.concat(Arrays.stream(arr1), Arrays.stream(arr2)).toArray();
+        System.out.println(Arrays.toString(arr3));
     }
 }
 

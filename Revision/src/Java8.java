@@ -1,4 +1,14 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -6,8 +16,8 @@ import java.util.stream.Stream;
 public class Java8 {
     public void primitiveArrayToNonPrimitiveList(int[][] arr) { //2d array to list
         Integer[][] output = Stream.of(arr).
-                map(interval -> Arrays.stream(interval).boxed().toArray(Integer[]::new))
-                .toArray(Integer[][]::new);
+            map(interval -> Arrays.stream(interval).boxed().toArray(Integer[]::new))
+            .toArray(Integer[][]::new);
     }
 
     public void lambdaWithPriorityQueue(int[][] arr) {
@@ -40,7 +50,7 @@ public class Java8 {
     }
 
     public void arrayToListObject() {
-        Integer[] arr = new Integer[]{};
+        Integer[] arr = new Integer[] {};
         List<Integer> list = Arrays.asList(arr);
         //either create Integer type array
         //else use stream and box the array
@@ -48,8 +58,8 @@ public class Java8 {
 
     public void primitiveArrayToNonPrimitiveArray(int[] arr) {
         List<Integer> list = Arrays.stream(arr) //permutation
-                .boxed()
-                .collect(Collectors.toList());
+            .boxed()
+            .collect(Collectors.toList());
     }
 
     public void mapSyntax() {
@@ -106,23 +116,36 @@ public class Java8 {
         Stream.of(arr).forEach(arr1 -> System.out.println(Arrays.toString(arr1)));
     }
 
-    void  stringInteger(int i, String s){
+    void stringInteger(int i, String s) {
         Integer.parseInt(s.substring(0, i + 1)); //string  to integer  decode ways
         String.valueOf(i);//integer to string
     }
 
-    void listToSet(ArrayList<Integer> list){
+    void listToSet(ArrayList<Integer> list) {
         Set<Integer> set = new HashSet<>(list);
     }
-    void printArray(){
+
+    void printArray() {
         int[] arr = {1};
         System.out.println(Arrays.toString(arr)); //inject given array inside Arrays.toString()
     }
-    void concatenate2Arrays(){
+
+    void concatenate2Arrays() {
         int[] arr1 = {1};
         int[] arr2 = {2};
         int[] arr3 = IntStream.concat(Arrays.stream(arr1), Arrays.stream(arr2)).toArray();
         System.out.println(Arrays.toString(arr3));
+    }
+
+    void printMapKeyValue() {
+        Map<Integer, Integer> map = new TreeMap<>(); //or HashMap
+        map.put(1, 2);
+        map.put(3, 4);
+        map.forEach((key, value) -> System.out.println(key + " " + value)); //key value
+
+        map.values().forEach(val -> System.out.println(val));
+        map.keySet().forEach((key -> System.out.println(key)));
+        map.values().stream().collect(Collectors.toList());
     }
 }
 

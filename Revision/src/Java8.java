@@ -3,11 +3,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -143,9 +145,29 @@ public class Java8 {
         map.put(3, 4);
         map.forEach((key, value) -> System.out.println(key + " " + value)); //key value
 
+        Queue<Integer> queue = new LinkedList<>();
+        queue.peek();
         map.values().forEach(val -> System.out.println(val));
         map.keySet().forEach((key -> System.out.println(key)));
         map.values().stream().collect(Collectors.toList());
+    }
+
+
+    void stringSplit(){
+        String word = "abc def";
+        String[] arr = word.split("\\s+");
+        Arrays.toString(arr);
+
+        String s = "4#abcd"; //encode decode string
+        int st = 0;
+        int hashIndex = s.indexOf('#', st); //1
+        System.out.println(hashIndex);
+        String l1string = s.substring(st, hashIndex);
+        int  l2 = Integer.parseInt(l1string);
+        String subs = s.substring(hashIndex + 1, hashIndex + 1 + l2) ;//including current element
+
+
+
     }
 }
 

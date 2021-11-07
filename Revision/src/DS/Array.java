@@ -106,7 +106,7 @@ public class Array {
                 if (sum < target) left++;
                 else if (sum > target) right--;
 
-                return new int[]{left, right};
+                else return new int[]{left, right};
 
             }
             return new int[]{-1, -1};

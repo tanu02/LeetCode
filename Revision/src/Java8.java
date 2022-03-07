@@ -23,14 +23,17 @@ public class Java8 {
     }
 
     public void lambdaWithPriorityQueue(int[][] arr) {
+
         Queue<Integer[]> queue = new PriorityQueue<>((int1, int2) -> Integer.compare(int1[1], int2[1])); //sort based upon end time
     }
 
     public void sortArrayLambda(int[][] arr) {
+
         Arrays.sort(arr, (int1, int2) -> Integer.compare(int1[0], int2[0])); //sort based upon start time
     }
 
     public void sortListCollections(List<Integer> list) {
+
         Collections.sort(list, (a, b) -> Integer.compare(a, b));
     }
 
@@ -115,6 +118,7 @@ public class Java8 {
     }
 
     void print2dArray(int[][] arr) {
+
         Stream.of(arr).forEach(arr1 -> System.out.println(Arrays.toString(arr1)));
     }
 
@@ -153,7 +157,7 @@ public class Java8 {
     }
 
 
-    void stringSplit(){
+    void stringSplit() {
         String word = "abc def";
         String[] arr = word.split("\\s+");
         Arrays.toString(arr);
@@ -163,9 +167,34 @@ public class Java8 {
         int hashIndex = s.indexOf('#', st); //1
         System.out.println(hashIndex);
         String l1string = s.substring(st, hashIndex);
-        int  l2 = Integer.parseInt(l1string);
-        String subs = s.substring(hashIndex + 1, hashIndex + 1 + l2) ;//including current element
+        int l2 = Integer.parseInt(l1string);
+        String subs = s.substring(hashIndex + 1, hashIndex + 1 + l2);//including current element
+        Set<Integer> set = new HashSet<>();
+        Integer x = 1;
+        String ans = String.valueOf(x);
 
+    }
+
+    public void addInQueue() {
+        int[] arr = {1, 2};
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(arr);
+        //or
+        queue.offer(new int[] {1, 2});
+        int[] res = {1,2};
+        int[] res1;
+        res1 = new int[] {1,2};
+        int[][] dis  = new int[1][1];
+
+        Queue<int[]> queue1 = new PriorityQueue<>(
+            (c1, c2) ->
+                    c1[2]  - c2[2]
+        );
+
+        List<Integer> list = new ArrayList<>() ;
+        int  size = list.size();
+        Integer[] arr3232 = list.toArray(new Integer[size]);
+        Stack<int[]> stac = new Stack<>();
 
 
     }

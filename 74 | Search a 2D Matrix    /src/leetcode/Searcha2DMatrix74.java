@@ -1,5 +1,6 @@
 package leetcode;
 //array is sorted row wise : mn is sorted start from 0 to mn
+//Link: https://leetcode.com/problems/search-a-2d-matrix/
 class Searcha2DMatrix74 {
 	int row = 0; 
 	int col = 0; 

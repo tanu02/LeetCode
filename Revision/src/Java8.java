@@ -198,5 +198,24 @@ public class Java8 {
 
 
     }
+
+    public void removeListArrayvsLinkedlist(){
+        //remove index operation is not present in arraylist
+        //hence use linkedinlist
+        String[] arr = "23,44".split(",");
+
+        List<Integer> list = new LinkedList<>();
+        list.remove(2); // works
+
+        List<Integer> errorList = new ArrayList<>();
+        list.remove(0); //error
+    }
+
+    public void stringToInteger(){
+        String abc = "";
+        int val = Integer.valueOf(abc);
+    }
+
+
 }
 
